@@ -28,15 +28,19 @@ touglebtn.addEventListener('click', function () {
 })
 
 
-function UrlUpdate(nextURL, nextTitle, nextState) {
+function UrlUpdate(nextURL, nextTitle) {
+    nextState = {
+        additionalInformation: 'Updated State'
+    };
     window.history.pushState(nextState, nextTitle, nextURL);
     window.history.replaceState(nextState, nextTitle, nextURL);
+    document.title = nextTitle;
 }
 
 function getElementHTML(id) {
     return document.getElementById(id);
 }
-function addAction (element, func) {
+function addAction(element, func) {
     element.addEventListener('click', func);
 }
 
@@ -64,10 +68,8 @@ home.addEventListener('click', function () {
     // console.log(sitepage);
     UrlUpdate(
         nextURL = '/index.html',
-        nextTitle = 'Home - A2College',
-        nextState = {
-            additionalInformation: 'Updated State'
-        })
+        nextTitle = 'Home - A2College'
+    );
     delete home;
 });
 // home.click();
@@ -81,9 +83,7 @@ blog.addEventListener('click', function () {
     UrlUpdate(
         nextURL = '/blog.html',
         nextTitle = 'Blog - A2College',
-        nextState = {
-            additionalInformation: 'Updated State'
-        })
+    );
     delete blog;
 })
 let about = document.getElementById('about');
@@ -95,9 +95,7 @@ about.addEventListener('click', function () {
     UrlUpdate(
         nextURL = '/about.html',
         nextTitle = 'About - A2College',
-        nextState = {
-            additionalInformation: 'Updated State'
-        })
+    );
     delete about;
 })
 
@@ -125,4 +123,3 @@ if (locate === 'index') {
     sessionStorage.removeItem("sitepage");
     about.click();
 }
-
