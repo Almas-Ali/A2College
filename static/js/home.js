@@ -1,17 +1,16 @@
+'use strict';
 
-/* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
 function openNav() {
     document.getElementById('mySidenav').style.width = '250px';
     document.getElementById('main').style.marginLeft = '250px';
     // document.body.style.backgroundColor = 'rgba(0,0,0,0.4)';
 }
 
-/* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
 function closeNav() {
     document.getElementById('mySidenav').style.width = '0';
     document.getElementById('main').style.marginLeft = '0';
     document.body.style.backgroundColor = 'white';
-}
+};
 
 
 let touglebtn = document.getElementById('touglebtn');
@@ -25,58 +24,34 @@ touglebtn.addEventListener('click', function () {
         openNav();
         touglebtn.innerHTML = '&#9747;';
     }
-})
+});
 
 
-function UrlUpdate(nextURL, nextTitle) {
-    nextState = {
-        additionalInformation: 'Updated State'
-    };
-    window.history.pushState(nextState, nextTitle, nextURL);
-    window.history.replaceState(nextState, nextTitle, nextURL);
-    document.title = nextTitle;
-}
+// 360ui code starts from here...
 
-function getElementHTML(id) {
-    return document.getElementById(id);
-}
-function addAction(element, func) {
-    element.addEventListener('click', func);
-}
+let home = getElementHTML('home');
+let main = getElementHTML('main');
 
-let home = document.getElementById('home');
-let main = document.getElementById('main');
-
-home.addEventListener('click', function () {
-
+addClickAction(home, function () {
     main.innerHTML = `
-    Welcome to A2College. <br>
-    I am Md. Almas Ali Principal of this college.
+    <div class="container warning">
+        Welcome to A2College. <br>
+        A place where you can learn about latest programming technologies. <br>
+        Stay with us and learn from us. <br>
+        <!-- <img src="./static/img/Penguins.jpg" alt="Img" width="500px"> -->
+    </div>
+    
     `;
-    // let next = window.location.search;
-    // window.location.search = '';
-    // console.log(next)
-    // let sitepage = sessionStorage.getItem("sitepage");
-    // if (sitepage == "" | null) {
-    //     console.log('sitepage null');
-    //     let sitepage = sessionStorage.setItem("sitepage", "/index.html");
-    // } else {
-    //     console.log('sitepage not null');
-    //     eval(`let v = sitepage`);
-    //     console.log(v);
-    // }
-    // console.log(sitepage);
     UrlUpdate(
         nextURL = '/index.html',
         nextTitle = 'Home - A2College'
     );
-    delete home;
 });
-// home.click();
+home.click();
 
-let blog = document.getElementById('blog');
+let blog = getElementHTML('blog');
 
-blog.addEventListener('click', function () {
+addClickAction(blog, function () {
     main.innerHTML = `
     This is Blog section.
     `
@@ -84,11 +59,10 @@ blog.addEventListener('click', function () {
         nextURL = '/blog.html',
         nextTitle = 'Blog - A2College',
     );
-    delete blog;
-})
-let about = document.getElementById('about');
+});
 
-about.addEventListener('click', function () {
+let about = getElementHTML('about');
+addClickAction(about, function () {
     main.innerHTML = `
     This is About section.
     `
@@ -96,9 +70,14 @@ about.addEventListener('click', function () {
         nextURL = '/about.html',
         nextTitle = 'About - A2College',
     );
-    delete about;
-})
+});
 
+let intro = getElementHTML('intro');
+addClickAction(intro, function () {
+    main.innerHTML = `
+    This is a brif inro of A2College...
+    `
+});
 
 // let NotFound404 =;
 
@@ -107,19 +86,14 @@ about.addEventListener('click', function () {
 // })
 
 let locate = sessionStorage.getItem("sitepage");
-console.log(locate);
 if (locate === 'index') {
-    // home.click();
     sessionStorage.removeItem("sitepage");
-    // console.log('home');
 
 } else if (locate === 'blog') {
-    // console.log('blog');
     blog.click();
     sessionStorage.removeItem("sitepage");
 
 } else if (locate === 'about') {
-    // console.log('about this');
     sessionStorage.removeItem("sitepage");
     about.click();
 }

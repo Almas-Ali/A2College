@@ -10,6 +10,7 @@ header nav {
   position: fixed;
   width: 100%;
   font-size: 18px;
+  box-shadow: 0 0 3px black;
 }
 
 .logo {
@@ -68,8 +69,6 @@ header nav ul li:hover {
   border-radius: 18px;
   transition: 0.4s;
 }
-
-
 
 a {
   text-decoration: none;
@@ -152,7 +151,7 @@ a:active {
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
   transition: margin-left 0.5s;
-  padding: 86px 20px 20px 20px;
+  padding: 65px 0 0 0;
 }
 
 footer {
@@ -164,6 +163,24 @@ footer {
 footer p {
   text-align: center;
   font-size: 16px;
+}
+
+.container {
+  margin: 16px;
+}
+
+.warning {
+  background-color: yellow;
+  /* border: 1px solid black; */
+  padding: 5px;
+  box-shadow: 0 0 3px black;
+}
+
+.danger {
+  background-color: #f02013;
+  color: white;
+  border: 1px solid black;
+  padding: 5px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
@@ -182,6 +199,5 @@ footer p {
 
 @media (max-width: 500px) {
   nav ul {
-    
   }
 }
