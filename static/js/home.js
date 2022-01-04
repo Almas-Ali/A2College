@@ -28,6 +28,17 @@ touglebtn.addEventListener('click', function () {
 })
 
 
+function UrlUpdate(nextURL, nextTitle, nextState) {
+    window.history.pushState(nextState, nextTitle, nextURL);
+    window.history.replaceState(nextState, nextTitle, nextURL);
+}
+
+function getElementHTML(id) {
+    return document.getElementById(id);
+}
+function addAction (element, func) {
+    element.addEventListener('click', func);
+}
 
 let home = document.getElementById('home');
 let main = document.getElementById('main');
@@ -51,17 +62,15 @@ home.addEventListener('click', function () {
     //     console.log(v);
     // }
     // console.log(sitepage);
-    const nextURL = '/index.html';
-    const nextTitle = 'Home - A2College';
-    const nextState = {
-        additionalInformation: 'Updated State'
-    };
-
-    window.history.pushState(nextState, nextTitle, nextURL);
-    window.history.replaceState(nextState, nextTitle, nextURL);
+    UrlUpdate(
+        nextURL = '/index.html',
+        nextTitle = 'Home - A2College',
+        nextState = {
+            additionalInformation: 'Updated State'
+        })
     delete home;
 });
-home.click();
+// home.click();
 
 let blog = document.getElementById('blog');
 
@@ -69,14 +78,12 @@ blog.addEventListener('click', function () {
     main.innerHTML = `
     This is Blog section.
     `
-    const nextURL = '/blog.html';
-    const nextTitle = 'Blog - A2College';
-    const nextState = {
-        additionalInformation: 'Updated State'
-    };
-
-    window.history.pushState(nextState, nextTitle, nextURL);
-    window.history.replaceState(nextState, nextTitle, nextURL);
+    UrlUpdate(
+        nextURL = '/blog.html',
+        nextTitle = 'Blog - A2College',
+        nextState = {
+            additionalInformation: 'Updated State'
+        })
     delete blog;
 })
 let about = document.getElementById('about');
@@ -85,33 +92,37 @@ about.addEventListener('click', function () {
     main.innerHTML = `
     This is About section.
     `
-    const nextURL = '/about.html';
-    const nextTitle = 'About - A2College';
-    const nextState = {
-        additionalInformation: 'Updated State'
-    };
-
-    window.history.pushState(nextState, nextTitle, nextURL);
-    window.history.replaceState(nextState, nextTitle, nextURL);
+    UrlUpdate(
+        nextURL = '/about.html',
+        nextTitle = 'About - A2College',
+        nextState = {
+            additionalInformation: 'Updated State'
+        })
     delete about;
 })
 
 
+// let NotFound404 =;
+
+// NotFound404.addEventListener('click', function () {
+//     main.innerHTML = `<h1>404 Page Not Found !</h1>`;
+// })
 
 let locate = sessionStorage.getItem("sitepage");
 console.log(locate);
 if (locate === 'index') {
     // home.click();
     sessionStorage.removeItem("sitepage");
-    console.log('home');
+    // console.log('home');
 
 } else if (locate === 'blog') {
-    console.log('blog');
+    // console.log('blog');
     blog.click();
     sessionStorage.removeItem("sitepage");
 
 } else if (locate === 'about') {
-    console.log('about this');
+    // console.log('about this');
     sessionStorage.removeItem("sitepage");
     about.click();
 }
+
